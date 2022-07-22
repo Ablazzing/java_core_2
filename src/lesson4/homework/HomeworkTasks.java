@@ -1,4 +1,4 @@
-package lesson4;
+package lesson4.homework;
 
 public class HomeworkTasks {
     public static void main(String[] args) {
@@ -7,7 +7,9 @@ public class HomeworkTasks {
         // Базовый уровень
         // Задание №1 - Написать цикл, который выводит через пробел 100 чисел с приставкой "a".
         // Ожидаемый результат: 1а 2а 3а .. 100а
-        //
+        for (int i = 1; i < 101; i++) {
+            System.out.print(i+ " ");
+        }
         // Задание №2
         // Дано:
         int ageChildren = 10;
@@ -15,7 +17,16 @@ public class HomeworkTasks {
         // если ребенку до 6 лет то в сад, если до 11 лет в младшую школу, если до 17 лет в среднюю школу, иначе в университет
         // Отправляет - имеется в виду, печатает на экран: "пошел с сад", "пошел в младшую школу" и т.д.
         // Проверьте работоспособность условий, через изменение значения переменной.
-        //
+        if (ageChildren < 6) {
+            System.out.println("Ребенок идет в сад");
+        } else if (ageChildren < 11) {
+            System.out.println("Ребенок идет в младшую школу");
+        } else if (ageChildren < 17) {
+            System.out.println("Ребенок идет в среднюю школу");
+        } else {
+            System.out.println("Идет в университет");
+        }
+
         // Задание №3
         // Дано:
         boolean chicken = true;
@@ -32,11 +43,23 @@ public class HomeworkTasks {
         // Написать набор условий, приготовления салатов, по приоритету (от Цезаря к овощному). Либо объявить о невозможности сделать салат.
         // Ожидаемый результат: вывод на экран сделанного салата или объявление о том, что ничего нет.
         // Проверьте работоспособность условий, через изменение значения переменных.
+        if (chicken && vegetables && sour && toast) {
+            System.out.println("Повар делает цезарь");
+        } else if (vegetables && (sausage || chicken) && eggs) {
+            System.out.println("Повар делает оливье");
+        } else if (vegetables) {
+            System.out.println("Повар делает овощной салат");
+        } else {
+            System.out.println("У повара ничего нет");
+        }
 
         // Задание №4
         // Создать два класса, которые описывают какое либо животное (имеют два атрибута).
         // Написать к ним конструктор, сеттеры, геттеры.
         // Создать экземпляры этих двух животных.
+        Cat barsik = new Cat(5, "Барсик");
+        Dog dog = new Dog(4, true);
+
 
         // Продвинутый уровень
         // Задание №1: Написать цикл, который будет прибавлять число к result до тех пор,
@@ -47,11 +70,28 @@ public class HomeworkTasks {
         // Вывести на экран, количество итераций, которое потребовалось, чтобы дойти до миллиона.
         // Если число отрицательное, то сразу заканчиваем цикл, ничего не выводя.
         // Внимание: число может измениться, и не должно приводить к изменению вашего кода.
+        long count = 0;
+        do {
+            if (increment <= 0) {
+                break;
+            }
+            result += increment;
+            count++;
+            if (result == 1_000_000) {
+                System.out.println(count);
+            }
+        } while (result < 1_000_000);
 
         // Задание №2: Дан массив единиц, произвольной длины. Создать цикл, который заменяет каждый четный элемент на 0;
         // Например, дано: [1,1,1,1,1]
         // Ожидаемый результат: [0,1,0,1,0]
         // Подсказка: прочитай про операнд "%".
+        int[] array = {1,1,1,1,1};
+        for (int i = 0; i < array.length; i++) {
+            if (i % 2 == 0) {
+                array[i] = 0;
+            }
+        }
 
         // Задание №3:
         // Дано:
@@ -71,6 +111,41 @@ public class HomeworkTasks {
         // Если нет бензина и что-то сломано, то за консультацию денег не берут.
         // Ситуации, что бензин есть и ничего не сломано - быть не может.
         // Ожидаемый результат: выведен на экран счет клиенту.
+        double price = 0;
+        int countProblems = 0;
+        if (!hasFuel && !(hasElectricsProblem || hasMotorProblem || hasTransmissionProblem || hasWheelsProblem)) {
+            price = 1000;
+        } else {
+            if (hasMotorProblem) {
+                price += 10000;
+                countProblems++;
+            }
+
+            if (hasElectricsProblem) {
+                price += 5000;
+                countProblems++;
+            }
+
+            if (hasTransmissionProblem) {
+                price+= 4000;
+                countProblems++;
+            }
+
+            if (hasWheelsProblem) {
+                price += 2000;
+                countProblems++;
+            }
+
+            if (countProblems > 1) {
+                price *= 0.9;
+            }
+
+            if (hasTransmissionProblem && (hasMotorProblem || hasElectricsProblem)) {
+                price *= 0.8;
+            }
+        }
+
+        System.out.println(price);
 
         // Задание №4:
         // Написать систему управления складскими запасами. Создать класс склад, создать класс работники
