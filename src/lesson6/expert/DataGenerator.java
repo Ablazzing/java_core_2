@@ -27,7 +27,7 @@ public class DataGenerator {
     private static final int YEAR = 2012;
 
     public static void main(String[] args) throws IOException {
-        //createReports("имя вашего файла");
+        createReports("E:\\repos\\java_core_2\\resource");
     }
 
     public static void createReports(String filename) throws IOException {
